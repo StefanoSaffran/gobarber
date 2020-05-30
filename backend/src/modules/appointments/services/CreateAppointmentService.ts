@@ -5,7 +5,10 @@ import AppError from '@shared/errors/AppError';
 
 import ICacheProvider from '@shared/container/providers/CacheProvider/models/ICacheProvider';
 import IAppointmentRepository from '@modules/appointments/repositories/IAppointmentsRepository';
+import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import INotificationsRepository from '@modules/notifications/repositories/INotificationsRepository';
+
+import User from '@modules/users/infra/typeorm/entities/User';
 import Appointment from '../infra/typeorm/entities/Appointment';
 
 interface IRequest {
@@ -20,6 +23,9 @@ class CreateAppointmentService {
     @inject('AppointmentsRepository')
     private appointmentsRepository: IAppointmentRepository,
 
+    @inject('UsersRepository')
+    private usersRepository: IUsersRepository,
+
     @inject('NotificationsRepository')
     private notificationsRepository: INotificationsRepository,
 
@@ -33,6 +39,12 @@ class CreateAppointmentService {
     date,
   }: IRequest): Promise<Appointment> {
     const appointmentDate = startOfHour(date);
+
+    const checkProviderExists = await this.usersRepository.findById(
+      provider_id,
+    );
+
+    if (!checkProviderExists) throw new AppError('Provider not found');
 
     const findAppointmentInSameDate = await this.appointmentsRepository.findByDate(
       appointmentDate,
