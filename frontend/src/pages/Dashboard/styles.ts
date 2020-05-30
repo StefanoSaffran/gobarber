@@ -158,6 +158,10 @@ export const Section = styled.section`
     padding-bottom: 16px;
     margin-bottom: 16px;
   }
+
+  > p {
+    color: #999591;
+  }
 `;
 
 export const Appointment = styled.div`
@@ -168,11 +172,12 @@ export const Appointment = styled.div`
     margin-top: 20px;
   }
 
-  span {
+  > span {
     margin-left: auto;
     display: flex;
     align-items: center;
     color: #f4ede8;
+    width: 70px;
 
     svg {
       color: #ff9000;
@@ -180,7 +185,7 @@ export const Appointment = styled.div`
     }
   }
 
-  div {
+  > div {
     display: flex;
     flex: 1;
     align-items: center;
@@ -200,6 +205,21 @@ export const Appointment = styled.div`
       color: #fff;
       font-size: 20px;
     }
+  }
+`;
+
+export const Initials = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #312e38;
+
+  > span {
+    color: #ff9000;
+    font-size: 24px;
   }
 `;
 
