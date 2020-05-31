@@ -8,7 +8,6 @@ import IAppointmentRepository from '@modules/appointments/repositories/IAppointm
 import IUsersRepository from '@modules/users/repositories/IUsersRepository';
 import INotificationsRepository from '@modules/notifications/repositories/INotificationsRepository';
 
-import User from '@modules/users/infra/typeorm/entities/User';
 import Appointment from '../infra/typeorm/entities/Appointment';
 
 interface IRequest {
