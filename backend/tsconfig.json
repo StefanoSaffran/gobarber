@@ -1,4 +1,9 @@
 {
+  "exclude": [
+    "jest.config.js",
+    "prettier.config.js",
+    "coverage"
+  ],
   "compilerOptions": {
     "target": "es5",
     "module": "commonjs",

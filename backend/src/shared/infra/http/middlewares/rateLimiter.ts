@@ -14,7 +14,7 @@ const limiter = new RateLimiterRedis({
   storeClient: redisClient,
   keyPrefix: 'rateLimit',
   points: 5,
-  duration: 5,
+  duration: 1,
   blockDuration: 10,
 });
 
