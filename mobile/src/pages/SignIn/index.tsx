@@ -14,7 +14,6 @@ import { useNavigation } from '@react-navigation/native';
 import * as Yup from 'yup';
 
 import { FormHandles } from '@unform/core';
-import { Form } from '@unform/mobile';
 
 import { useAuth } from '../../hooks/auth';
 
@@ -28,13 +27,14 @@ import Button from '../../components/Button';
 import {
   Container,
   Title,
+  UnForm,
   ForgotPassword,
   ForgotPasswordText,
   CreateAccountButton,
   CreateAccountButtonText,
 } from './styles';
 
-interface SignInFormData {
+interface ISignInFormData {
   email: string;
   password: string;
 }
@@ -53,7 +53,7 @@ const SignIn: React.FC = () => {
   const keyboardDidHide = useCallback((): void => setIsHidden(false), []);
 
   const handleSignIn = useCallback(
-    async (data: SignInFormData) => {
+    async (data: ISignInFormData) => {
       try {
         formRef.current?.setErrors({});
 
@@ -119,7 +119,7 @@ const SignIn: React.FC = () => {
               <Title>Faça seu logon</Title>
             </View>
 
-            <Form ref={formRef} onSubmit={handleSignIn}>
+            <UnForm ref={formRef} onSubmit={handleSignIn}>
               <Input
                 autoCorrect={false}
                 autoCapitalize="none"
@@ -152,7 +152,7 @@ const SignIn: React.FC = () => {
               >
                 Entrar
               </Button>
-            </Form>
+            </UnForm>
 
             <ForgotPassword>
               <ForgotPasswordText>Esqueci minha senha</ForgotPasswordText>
