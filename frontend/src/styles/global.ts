@@ -1,6 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
 
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css';
+import 'react-toggle/style.css';
 
 export default createGlobalStyle`
   * {
@@ -17,8 +18,8 @@ export default createGlobalStyle`
   body {
     text-rendering: optimizeLegibility !important;
     -webkit-font-smoothing: antialiased !important;
-    background: #312e38;
-    color: #fff;
+    background: ${({ theme }) => theme.colors.background};
+    color: ${({ theme }) => theme.colors.title};
   }
 
   body, input, button, input::placeholder, textarea::placeholder {

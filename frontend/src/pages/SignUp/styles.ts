@@ -46,20 +46,20 @@ export const AnimationContainer = styled.div`
       margin-bottom: 24px;
     }
 
-    a {
-      color: #f4ede8;
+    aa {
+      color: ${({ theme }) => theme.colors.welcome};
       display: block;
       margin-top: 24px;
       transition: color 0.2s;
 
       &:hover {
-        color: ${shade(0.2, '#f4ede8')};
+        color: ${({ theme }) => `${shade(0.2, theme.colors.welcome)}`};
       }
     }
   }
 
   > a {
-    color: #ff9000;
+    color: ${({ theme }) => theme.colors.primary};
     display: block;
     margin-top: 24px;
     transition: color 0.2s;
@@ -68,7 +68,7 @@ export const AnimationContainer = styled.div`
     align-items: center;
 
     &:hover {
-      color: ${shade(0.2, '#ff9000')};
+      color: ${({ theme }) => `${shade(0.2, theme.colors.primary)}`};
     }
 
     svg {
