@@ -2,16 +2,17 @@ import styled, { css } from 'styled-components';
 
 import Tooltip from '../Tooltip';
 
-interface ContainerProps {
+interface IContainerProps {
   isFocused: boolean;
   isFilled: boolean;
   isErrored: boolean;
 }
 
-export const Container = styled.div<ContainerProps>`
-  background: #232129;
+export const Container = styled.div<IContainerProps>`
+  background: ${({ theme }) => theme.colors.secondary};
   color: #666360;
-  border: 2px solid #232129;
+  border: 2px solid ${({ theme }) =>
+    theme.title === 'dark' ? theme.colors.secondary : theme.colors.title};
   border-radius: 10px;
   padding: 16px;
   width: 100%;
@@ -32,21 +33,21 @@ export const Container = styled.div<ContainerProps>`
   ${({ isFocused }) =>
     isFocused &&
     css`
-      color: #ff9000;
-      border-color: #ff9000;
+      color: ${({ theme }) => theme.colors.primary};
+      border-color: ${({ theme }) => theme.colors.primary};
     `}
 
   ${({ isFilled }) =>
     isFilled &&
     css`
-      color: #ff9000;
+      color: ${({ theme }) => theme.colors.primary};
     `}
 
   input {
     flex: 1;
-    background: #232129;
+    background: ${({ theme }) => theme.colors.secondary};
     border: 0;
-    color: #f4ede8;
+    color: ${({ theme }) => theme.colors.welcome};
   }
 
   svg {

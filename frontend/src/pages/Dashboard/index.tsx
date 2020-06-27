@@ -1,16 +1,31 @@
-import React, { useState, useCallback, useEffect, useMemo } from 'react';
+import React, {
+  useState,
+  useCallback,
+  useEffect,
+  useMemo,
+  useContext,
+} from 'react';
 import { isToday, format, parseISO, isAfter } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import DayPicker, { DayModifiers } from 'react-day-picker';
 import 'react-day-picker/lib/style.css';
 import { FiPower, FiClock } from 'react-icons/fi';
+import { FaMoon, FaSun } from 'react-icons/fa';
+import Toggle from 'react-toggle';
+import { ThemeContext } from 'styled-components';
+import { Link } from 'react-router-dom';
+import logoLight from '../../assets/logo-light.svg';
 import logo from '../../assets/logo.svg';
+import { useTheme } from '../../hooks/theme';
+import { useAuth } from '../../hooks/auth';
+import api from '../../services/api';
 
 import {
   Container,
   Header,
   HeaderContent,
   Profile,
+  Avatar,
   Content,
   Schedule,
   NextAppointment,
@@ -19,8 +34,6 @@ import {
   Initials,
   Calendar,
 } from './styles';
-import { useAuth } from '../../hooks/auth';
-import api from '../../services/api';
 
 interface MonthAvailabilityItem {
   day: number;
@@ -39,6 +52,8 @@ interface Appointment {
 
 const Dashboard: React.FC = () => {
   const { signOut, user } = useAuth();
+  const { title } = useContext(ThemeContext);
+  const { toggleTheme } = useTheme();
   const [selectedDate, setSelectedDate] = useState(new Date());
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [appointments, setAppointments] = useState<Appointment[]>([]);
@@ -142,23 +157,50 @@ const Dashboard: React.FC = () => {
     );
   }, [appointments]);
 
+  const nameInitials = useMemo(() => {
+    return user.name
+      .split(' ')
+      .map(name => name.charAt(0).toUpperCase())
+      .join('')
+      .substring(0, 2);
+  }, [user.name]);
+
   return (
     <Container>
       <Header>
         <HeaderContent>
-          <img src={logo} alt="GoBarber" />
+          {title === 'light' ? (
+            <img src={logoLight} alt="GoBarber" />
+          ) : (
+            <img src={logo} alt="GoBarber" />
+          )}
 
           <Profile>
-            <img
-              src="https://skylab.rocketseat.com.br/api/users/avatar/profile-30a7c284-0d48-4acb-a095-09b145d3d2a8.jpg"
-              alt="Stefano Saffran"
-            />
+            <Avatar>
+              {user.avatar_url ? (
+                <img src={user.avatar_url} alt={user.name} />
+              ) : (
+                <p>{nameInitials}</p>
+              )}
+            </Avatar>
 
             <div>
               <span>Bem-vindo,</span>
-              <strong>{user.name}</strong>
+              <Link to="/profile">
+                <strong>{user.name}</strong>
+              </Link>
             </div>
           </Profile>
+
+          <Toggle
+            checked={title === 'dark'}
+            onChange={toggleTheme}
+            className="toggle"
+            icons={{
+              checked: <FaMoon color="yellow" size={12} />,
+              unchecked: <FaSun color="yellow" size={12} />,
+            }}
+          />
 
           <button type="button" onClick={signOut}>
             <FiPower />
