@@ -1,11 +1,12 @@
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { shade } from 'polished';
 
 export const Container = styled.div``;
 
 export const Header = styled.header`
   padding: 32px 0;
-  background: #28262e;
+  background: ${({ theme }) => theme.colors.secondary};
+  box-shadow: 0px 0px 10px -4px rgba(0, 0, 0, 0.2);
 `;
 
 export const HeaderContent = styled.div`
@@ -18,15 +19,23 @@ export const HeaderContent = styled.div`
     height: 80px;
   }
 
-  button {
+  div.react-toggle {
     margin-left: auto;
+    margin-right: 15px;
+  }
+
+  button {
     background: transparent;
     border: 0;
 
     svg {
-      color: #999591;
+      color: ${({ theme }) => theme.colors.text};
       width: 20px;
       height: 20px;
+
+      :hover {
+        color: ${({ theme }) => theme.colors.primary};
+      }
     }
   }
 `;
@@ -36,12 +45,6 @@ export const Profile = styled.div`
   align-items: center;
   margin-left: 80px;
 
-  img {
-    width: 56px;
-    height: 56px;
-    border-radius: 50%;
-  }
-
   div {
     display: flex;
     flex-direction: column;
@@ -50,11 +53,41 @@ export const Profile = styled.div`
   }
 
   span {
-    color: #f4ede8;
+    color: ${({ theme }) => theme.colors.welcome};
   }
 
-  strong {
-    color: #ff9000;
+  a {
+    color: ${({ theme }) => theme.colors.primary};
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+`;
+
+export const Avatar = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #312e38;
+
+  img {
+    width: 56px;
+    height: 56px;
+    object-fit: cover;
+    border-radius: 50%;
+    border-width: ${({ theme }) => (theme.title === 'dark' ? '3px' : '0')};
+    border-style: solid;
+    border-color: ${({ theme }) => theme.colors.primary};
+    border-image: initial;
+  }
+
+  p {
+    color: ${({ theme }) => theme.colors.primary};
+    font-size: 24px;
   }
 `;
 
@@ -70,11 +103,12 @@ export const Schedule = styled.div`
 
   h1 {
     font-size: 36px;
+    color: ${({ theme }) => theme.colors.title};
   }
 
   p {
     margin-top: 8px;
-    color: #ff9000;
+    color: ${({ theme }) => theme.colors.primary};
     display: flex;
     font-weight: 500;
 
@@ -87,7 +121,7 @@ export const Schedule = styled.div`
       content: '';
       width: 1px;
       height: 12px;
-      background: #ff9000;
+      background: ${({ theme }) => theme.colors.primary};
       margin: 0 8px;
     }
   }
@@ -97,7 +131,7 @@ export const NextAppointment = styled.div`
   margin-top: 64px;
 
   strong {
-    color: #999591;
+    color: ${({ theme }) => theme.colors.text};
     font-size: 20px;
     font-weight: 400;
   }
@@ -113,7 +147,7 @@ export const NextAppointment = styled.div`
 
     &::before {
       content: '';
-      background: #ff9000;
+      background: ${({ theme }) => theme.colors.primary};
       height: 80%;
       width: 1px;
       position: absolute;
@@ -129,17 +163,17 @@ export const NextAppointment = styled.div`
 
     strong {
       margin-left: 24px;
-      color: #fff;
+      color: ${({ theme }) => theme.colors.title};
     }
 
     span {
       margin-left: auto;
       display: flex;
       align-items: center;
-      color: #999591;
+      color: ${({ theme }) => theme.colors.text};
 
       svg {
-        color: #ff9000;
+        color: ${({ theme }) => theme.colors.primary};
         margin-right: 8px;
       }
     }
@@ -150,17 +184,17 @@ export const Section = styled.section`
   margin-top: 48px;
 
   > strong {
-    color: #999591;
+    color: ${({ theme }) => theme.colors.text};
     font-size: 20px;
     line-height: 26px;
-    border-bottom: 1px solid #3e3b47;
+    border-bottom: 1px solid ${({ theme }) => theme.colors.cardBackground};
     display: block;
     padding-bottom: 16px;
     margin-bottom: 16px;
   }
 
   > p {
-    color: #999591;
+    color: ${({ theme }) => theme.colors.text};
   }
 `;
 
@@ -176,11 +210,11 @@ export const Appointment = styled.div`
     margin-left: auto;
     display: flex;
     align-items: center;
-    color: #f4ede8;
+    color: ${({ theme }) => theme.colors.welcome};
     width: 70px;
 
     svg {
-      color: #ff9000;
+      color: ${({ theme }) => theme.colors.primary};
       margin-right: 8px;
     }
   }
@@ -189,10 +223,15 @@ export const Appointment = styled.div`
     display: flex;
     flex: 1;
     align-items: center;
-    background: #3e3b47;
+    background: ${({ theme }) => theme.colors.secondary};
     padding: 16px 24px;
     margin-left: 24px;
     border-radius: 10px;
+    ${({ theme }) =>
+      theme.title === 'light' &&
+      css`
+        border: 1px solid #222;
+      `};
 
     img {
       width: 56px;
@@ -202,7 +241,7 @@ export const Appointment = styled.div`
 
     strong {
       margin-left: 24px;
-      color: #fff;
+      color: ${({ theme }) => theme.colors.title};
       font-size: 20px;
     }
   }
@@ -215,10 +254,10 @@ export const Initials = styled.div`
   width: 56px;
   height: 56px;
   border-radius: 50%;
-  background: #312e38;
+  background: ${({ theme }) => theme.colors.background};
 
   > span {
-    color: #ff9000;
+    color: ${({ theme }) => theme.colors.primary};
     font-size: 24px;
   }
 `;
@@ -227,8 +266,14 @@ export const Calendar = styled.aside`
   width: 380px;
 
   .DayPicker {
-    background: #28262e;
+    background: ${({ theme }) => theme.colors.secondary};
     border-radius: 10px;
+
+    ${({ theme }) =>
+      theme.title === 'light' &&
+      css`
+        box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.1);
+      `};
   }
 
   .DayPicker-wrapper {
@@ -252,14 +297,19 @@ export const Calendar = styled.aside`
   }
 
   .DayPicker-Day--available:not(.DayPicker-Day--outside) {
-    background: #3e3b47;
+    background: ${({ theme }) => theme.colors.secondary};
     border-radius: 10px;
-    color: #fff;
+    color: ${({ theme }) => theme.colors.title};
   }
 
   .DayPicker:not(.DayPicker--interactionDisabled)
     .DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover {
-    background: ${shade(0.2, '#3e3b47')};
+    background: ${({ theme }) => shade(0.2, theme.colors.welcome)};
+    ${({ theme }) =>
+      theme.title === 'light' &&
+      css`
+        border: 1px solid #222;
+      `};
   }
 
   .DayPicker-Day--today {
@@ -267,13 +317,13 @@ export const Calendar = styled.aside`
   }
 
   .DayPicker-Day--disabled {
-    color: #666360 !important;
+    color: ${({ theme }) => theme.colors.disabled} !important;
     background: transparent !important;
   }
 
   .DayPicker-Day--selected {
-    background: #ff9000 !important;
+    background: ${({ theme }) => theme.colors.primary} !important;
     border-radius: 10px;
-    color: #232129 !important;
+    color: ${({ theme }) => theme.colors.secondary} !important;
   }
 `;
