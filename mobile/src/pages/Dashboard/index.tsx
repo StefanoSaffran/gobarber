@@ -17,11 +17,14 @@ export interface IProvider {
 
 const Dashboard: React.FC = () => {
   const [providers, setProviders] = useState<IProvider[]>([]);
-  const { signOut, user } = useAuth();
+  const { user, signOut } = useAuth();
   const { navigate } = useNavigation();
 
   const navigateToProfile = useCallback(() => {
-    // navigate('Profile');
+    navigate('Profile');
+  }, [navigate]);
+
+  const handleSignOut = useCallback(() => {
     signOut();
   }, [signOut]);
 
@@ -76,6 +79,10 @@ const Dashboard: React.FC = () => {
             </S.UserInitialsContainer>
           )}
         </S.ProfileButton>
+
+        <S.SignOutButton onPress={handleSignOut}>
+          <Icon name="log-out" color="#ff9000" size={20} />
+        </S.SignOutButton>
       </S.Header>
 
       <S.ProvidersList

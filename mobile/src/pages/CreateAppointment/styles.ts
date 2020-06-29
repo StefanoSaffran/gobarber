@@ -63,7 +63,6 @@ export const UserAvatar = styled.Image`
 `;
 
 export const UserInitialsContainer = styled.View`
-  display: flex;
   justify-content: center;
   align-items: center;
   width: 56px;
@@ -111,7 +110,6 @@ export const ProviderAvatar = styled.Image<IProviderImageProps>`
 `;
 
 export const ProviderInitialsContainer = styled.View<IProviderInitialsProps>`
-  display: flex;
   justify-content: center;
   align-items: center;
   width: 32px;
