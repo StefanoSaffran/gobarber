@@ -14,12 +14,14 @@
   <img alt="Last commit on GitHub" src="https://img.shields.io/github/last-commit/StefanoSaffran/gobarber?color=ff9000">
   <img alt="Made by Stefano" src="https://img.shields.io/badge/made%20by-StefanoSaffran-%20?color=ff9000">
   <img alt="Project top programing language" src="https://img.shields.io/github/languages/top/StefanoSaffran/gobarber?color=ff9000">
+  <img alt="GitHub license" src="https://img.shields.io/github/license/StefanoSaffran/gobarber?color=ff9000">
 </p> 
 
 <p align="center">
   <a href="#computer-project">Project</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#rocket-built-with">Built with</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#information_source-how-to-run">How to run</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+  <a href="#memo-license">License</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
   <a href="#mailbox_with_mail-get-in-touch">Get in touch</a>
   </p>
 
@@ -193,6 +195,10 @@ $ yarn start
 $ yarn android
 
 ```
+
+## :memo: License
+
+This project is under the MIT license. See the [LICENSE](https://github.com/StefanoSaffran/gobarber/blob/master/LICENSE) for more information
 
 ## :mailbox_with_mail: Get in touch!
 
