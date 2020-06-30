@@ -222,10 +222,16 @@ const Dashboard: React.FC = () => {
               <strong>Atendimento a seguir</strong>
 
               <div>
-                <img
-                  src={nextAppointment.user.avatar_url}
-                  alt={nextAppointment.user.name}
-                />
+                {nextAppointment.user.avatar_url.length === 2 ? (
+                  <Initials>
+                    <span>{nextAppointment.user.avatar_url}</span>
+                  </Initials>
+                ) : (
+                  <img
+                    src={nextAppointment.user.avatar_url}
+                    alt={nextAppointment.user.name}
+                  />
+                )}
 
                 <strong>{nextAppointment.user.name}</strong>
                 <span>

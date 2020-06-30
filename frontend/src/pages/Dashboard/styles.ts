@@ -136,14 +136,22 @@ export const NextAppointment = styled.div`
     font-weight: 400;
   }
 
-  div {
-    background: #3e3b47;
+  > div {
+    background: ${({ theme }) =>
+      theme.title === 'light' ? '#fff' : '#3e3b47'};
     display: flex;
     align-items: center;
     padding: 16px 24px;
     border-radius: 10px;
     margin-top: 24px;
     position: relative;
+    transition: transform 0.2s;
+
+    ${({ theme }) =>
+      theme.title === 'light' &&
+      css`
+        box-shadow: 0px 0px 3px 1px rgba(0, 0, 0, 0.2);
+      `};
 
     &::before {
       content: '';
@@ -155,24 +163,28 @@ export const NextAppointment = styled.div`
       top: 10%;
     }
 
-    img {
+    &:hover {
+      transform: translateX(10px);
+    }
+
+    > img {
       width: 80px;
       height: 80px;
       border-radius: 50%;
     }
 
-    strong {
+    > strong {
       margin-left: 24px;
       color: ${({ theme }) => theme.colors.title};
     }
 
-    span {
+    > span {
       margin-left: auto;
       display: flex;
       align-items: center;
       color: ${({ theme }) => theme.colors.text};
 
-      svg {
+      > svg {
         color: ${({ theme }) => theme.colors.primary};
         margin-right: 8px;
       }
@@ -304,7 +316,7 @@ export const Calendar = styled.aside`
 
   .DayPicker:not(.DayPicker--interactionDisabled)
     .DayPicker-Day:not(.DayPicker-Day--disabled):not(.DayPicker-Day--selected):not(.DayPicker-Day--outside):hover {
-    background: ${({ theme }) => shade(0.2, theme.colors.welcome)};
+    background: ${({ theme }) => shade(0.2, theme.colors.disabled)};
     ${({ theme }) =>
       theme.title === 'light' &&
       css`
