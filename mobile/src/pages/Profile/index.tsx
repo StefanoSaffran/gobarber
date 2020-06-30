@@ -31,7 +31,6 @@ import {
   Container,
   Title,
   BackButton,
-  SignOutButton,
   UserAvatarButton,
   UserAvatar,
   UserInitialsContainer,
@@ -48,7 +47,7 @@ interface IProfileFormData {
 }
 
 const Profile: React.FC = () => {
-  const { user, updateUser, signOut } = useAuth();
+  const { user, updateUser } = useAuth();
   const navigation = useNavigation();
 
   const formRef = useRef<FormHandles>(null);
@@ -179,10 +178,6 @@ const Profile: React.FC = () => {
     navigation.goBack();
   }, [navigation]);
 
-  const handleSignOut = useCallback(() => {
-    signOut();
-  }, [signOut]);
-
   return (
     <>
       <KeyboardAvoidingView
@@ -198,10 +193,6 @@ const Profile: React.FC = () => {
             <BackButton onPress={handleGoBack}>
               <Icon name="chevron-left" size={24} color="#fff" />
             </BackButton>
-
-            <SignOutButton onPress={handleSignOut}>
-              <Icon name="log-out" color="#ff9000" size={20} />
-            </SignOutButton>
 
             <UserAvatarButton onPress={handleUpdateAvatar}>
               {user.avatar_url ? (
